@@ -1,0 +1,25 @@
+# Program file
+philo
+!philo/
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.obj
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# IDE files
+.vscode
