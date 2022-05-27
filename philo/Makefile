@@ -21,7 +21,7 @@ INC				:= $(shell ls $(INC_DIR))
 
 # ****************************** Compiler Options ******************************
 CC				:= cc
-CFLAGS			:= -Wall -Wextra -Werror -pthread
+CFLAGS			:= -Wall -Wextra -Werror -pthread -g
 INCFLAGS		:= -I $(INC_DIR)
 LIBFLAGS		:=
 
