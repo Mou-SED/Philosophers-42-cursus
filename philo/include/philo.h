@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:44:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/27 14:41:35 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/29 11:35:56 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 
 typedef struct s_data
 {
-	int				time_to_eat;
+	useconds_t		time_to_eat;
+	useconds_t		time_to_sleep;
+	useconds_t		time_to_die;
 	time_t 			init_time;
 	pthread_mutex_t	*forks;
 }	t_data;
@@ -37,7 +39,10 @@ typedef struct s_philos
 }	t_philos;
 
 int			ft_atoi(const char *str);
-int			ft_print_error(int ac, char **av);
+int			check_argments(int ac, char **av);
+time_t		get_time(void);
 time_t		set_time(time_t init_time);
+void		*routine(void *philosophers);
+void		print_routine(char *message, time_t time, t_philos *philosophers);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 14:19:14 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/27 13:24:51 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/29 11:35:47 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_error(char *str)
 	return (value);
 }
 
-int	ft_print_error(int ac, char **av)
+int	check_argments(int ac, char **av)
 {
 	int	i;
 
