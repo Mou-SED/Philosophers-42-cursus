@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:44:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 15:13:31 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:40:49 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ typedef struct s_philos
 
 int			ft_atoi(const char *str);
 int			check_argments(int ac, char **av);
-time_t		get_time(void);
-time_t		set_time(time_t init_time);
 t_philos	*alloc_philo(char **av);
 t_data		*alloc_data(t_philos *philosophers);
 void		create_philos(t_philos *philosophers, t_data *data);
+time_t		get_time(void);
+time_t		set_time(time_t init_time);
 void		*routine(void *philosophers);
 void		print_routine(char *message, time_t time, t_philos *philosophers);
 void		dying(t_philos *philosophers);

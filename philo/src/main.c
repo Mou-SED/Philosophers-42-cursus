@@ -6,16 +6,13 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:42:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 15:12:43 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 16:43:37 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// ! ./philo | number_of_philo | time_to_die | time_to_eat | time_to_sleep
-//? optional argument number_or_times_each_philosopher_must_eat
-
-void	get_info(t_data *data, int ac, char **av)
+static void	get_info(t_data *data, int ac, char **av)
 {
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
@@ -24,7 +21,7 @@ void	get_info(t_data *data, int ac, char **av)
 		data->n_must_eat = ft_atoi(av[5]);
 }
 
-void	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
+static void	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
 {
 	int	i;
 
@@ -38,12 +35,13 @@ void	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
 		pthread_mutex_init(&(data->print_mutex), NULL);
 		philosophers[i].right_fork = i;
 		philosophers[i].left_fork = (i + 1) % philosophers->num_philos;
+		philosophers[i].last_eat = 0;
 		philosophers[i].philo_eat = 0;
 		i++;
 	}
 }
 
-void	destroy_all(t_philos *philosophers, t_data *data)
+static void	destroy_all(t_philos *philosophers, t_data *data)
 {
 	int	i;
 
@@ -61,8 +59,8 @@ void	destroy_all(t_philos *philosophers, t_data *data)
 
 int	main(int ac, char **av)
 {
-	t_philos		*philosophers;
-	t_data			*data;
+	t_philos	*philosophers;
+	t_data		*data;
 
 	if (ac != 5 && ac != 6)
 		return (printf("Number of argument is invalid\n"), -1);
