@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 08:07:40 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 15:12:20 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 18:26:47 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ void	dying(t_philos *philosophers)
 	{
 		if (i == philosophers->num_philos)
 			i = 0;
-		if (is_die(&philosophers[i])
-			|| philosophers->philo_data->philos_eats
-			== philosophers->num_philos)
+		if (is_die(&philosophers[i]))
 		{
-			print_routine("died",
-				philosophers[i].philo_data->philo_die, &philosophers[i]);
+			print_routine("died", philosophers[i].philo_data->philo_die,
+				&philosophers[i]);
 			break ;
 		}
+		else if (philosophers->philo_data->philos_eats
+			== philosophers->num_philos)
+			break ;
 		i++;
 	}
 }
