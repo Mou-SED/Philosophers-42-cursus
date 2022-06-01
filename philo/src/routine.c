@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:22:32 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/31 21:16:56 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:49:10 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	taking_fork(t_philos *philosophers, int hand)
 
 	pthread_mutex_lock(&(philosophers->philo_data->forks)[hand]);
 	now = set_time(philosophers->philo_data->init_time);
-	if (hand == philosophers->right_fork)
-		print_routine("has taken a fork { R }", now, philosophers);
-	else if (hand == philosophers->left_fork)
-		print_routine("has taken a fork { L }", now, philosophers);
+	print_routine("has taken a fork", now, philosophers);
 	return (1);
 }
 
