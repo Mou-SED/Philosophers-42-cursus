@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:42:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 09:21:20 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 10:02:04 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_info(t_philos *philosophers, t_data *data, char **av)
 
 	i = 0;
 	get_info(data, av);
+	data->init_time = get_time();
 	while (i < philosophers->num_philos)
 	{
 		philosophers[i].id = i;
@@ -39,49 +40,40 @@ void	init_info(t_philos *philosophers, t_data *data, char **av)
 	}
 }
 
-int main (int ac, char **av)
+void	destroy_all(t_philos *philosophers, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < philosophers->num_philos)
+	{
+		pthread_mutex_destroy(&(data->forks[i]));
+		i++;
+	}
+	pthread_mutex_destroy(&(data->print_mutex));
+	free(philosophers);
+	free(data->forks);
+	free(data);
+}
+
+int	main(int ac, char **av)
 {
 	t_philos		*philosophers;
 	t_data			*data;
-	pthread_t		philo;
-	int 			i;
 
-	if (ac == 5 || ac == 6)
-	{
-		if (check_argments(ac, av) == -1)
-			return (-1);
-
-		philosophers = malloc(sizeof(t_philos) * ft_atoi(av[1]));
-		if (philosophers == NULL)
-			return (1);
-		philosophers->num_philos = ft_atoi(av[1]);
-		data = malloc(sizeof(t_data));
-		if (data == NULL)
-			return (free(philosophers), 1);
-		data->forks = malloc(sizeof(pthread_mutex_t) * philosophers->num_philos);
-		if (data->forks == NULL)
-			return (free(philosophers), free(data), 1);
-
-		data->init_time = get_time();
-		init_info(philosophers, data, av);
-		i = 0;
-		while (i < philosophers->num_philos)
-		{
-			philosophers[i].last_eat = 0;
-			philosophers[i].philo_data = data;
-			pthread_create(&philo, NULL, &routine, &(philosophers[i]));
-			pthread_detach(philo);
-			i++;
-			usleep(200);
-		}
-		dying(philosophers);
-		i = 0;
-		while (i < philosophers->num_philos)
-			pthread_mutex_destroy(&(data->forks[i++]));
-		pthread_mutex_destroy(&(data->print_mutex));
-		return (free(philosophers), free(data->forks), free(data), 0);
-	}
-	else
+	if (ac != 5 && ac != 6)
 		return (printf("Number of argument is invalid\n"), 1);
+	if (check_argments(ac, av) == -1)
+		return (-1);
+	philosophers = alloc_philo(av);
+	if (philosophers == NULL)
+		return (-1);
+	data = alloc_data(philosophers);
+	if (data == NULL)
+		return (-1);
+	init_info(philosophers, data, av);
+	create_philos(philosophers, data);
+	dying(philosophers);
+	destroy_all(philosophers, data);
 	return (0);
 }
