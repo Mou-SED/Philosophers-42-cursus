@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:59:49 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 10:00:14 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 13:25:59 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	create_philos(t_philos *philosophers, t_data *data)
 		pthread_create(&philo, NULL, &routine, &(philosophers[i]));
 		pthread_detach(philo);
 		i++;
-		usleep(200);
+		usleep(50);
 	}
 }

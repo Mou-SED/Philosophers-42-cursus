@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:22:32 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 10:49:10 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:13:38 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	eating(t_philos *philosophers)
 	now = set_time(philosophers->philo_data->init_time);
 	philosophers->last_eat = now;
 	print_routine("is eating", now, philosophers);
-	usleep(philosophers->philo_data->time_to_eat * 1000);
+	ft_usleep(philosophers->philo_data->time_to_eat);
+	philosophers->philo_eat++;
+	if (philosophers->philo_eat == philosophers->philo_data->n_must_eat)
+		philosophers->philo_data->philos_eats++;
 	return (1);
 }
 
@@ -45,7 +48,7 @@ int	sleeping(t_philos *philosophers)
 
 	now = set_time(philosophers->philo_data->init_time);
 	print_routine("is sleeping", now, philosophers);
-	usleep(philosophers->philo_data->time_to_sleep * 1000);
+	ft_usleep(philosophers->philo_data->time_to_sleep);
 	return (1);
 }
 
@@ -54,6 +57,8 @@ void	*routine(void *philosophers)
 	t_philos	*philosopher;
 
 	philosopher = (t_philos *)philosophers;
+	if (philosopher->id % 2 == 1)
+		usleep(50);
 	while (1)
 	{
 		if (taking_fork(philosopher, philosopher->right_fork) == 0)

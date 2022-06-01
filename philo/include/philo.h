@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:44:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 10:53:17 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:13:31 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	useconds_t		time_to_eat;
 	useconds_t		time_to_sleep;
 	useconds_t		time_to_die;
+	int				n_must_eat;
+	int				philos_eats;
 }	t_data;
 
 typedef struct s_philos
@@ -37,6 +39,7 @@ typedef struct s_philos
 	int				num_philos;
 	int				right_fork;
 	int				left_fork;
+	int				philo_eat;
 	useconds_t		last_eat;
 	t_data			*philo_data;
 }	t_philos;
@@ -51,5 +54,6 @@ void		create_philos(t_philos *philosophers, t_data *data);
 void		*routine(void *philosophers);
 void		print_routine(char *message, time_t time, t_philos *philosophers);
 void		dying(t_philos *philosophers);
+void		ft_usleep(time_t time);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:20:15 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/29 08:54:50 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 15:13:44 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ time_t	get_time(void)
 time_t	set_time(time_t init_time)
 {
 	return (get_time() - init_time);
+}
+
+void	ft_usleep(time_t time)
+{
+	time_t	start;
+
+	start = get_time();
+	while (get_time() - start < time)
+		usleep(50);
 }
