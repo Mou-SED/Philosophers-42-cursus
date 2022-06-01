@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:44:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/31 16:51:14 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:10:46 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_data
 	time_t 			init_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	int				did_someone_die;
 }	t_data;
 
 typedef struct s_philos

@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 08:07:40 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/31 22:02:59 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/01 09:25:10 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 static int	is_die(t_philos *philosophers)
 {
-	philosophers->philo_data->philo_die =
-		set_time(philosophers->philo_data->init_time);
+	philosophers->philo_data->philo_die
+		= set_time(philosophers->philo_data->init_time);
 	if (philosophers->philo_data->philo_die - philosophers->last_eat
 		>= philosophers->philo_data->time_to_die)
-	{
-		philosophers->philo_data->did_someone_die = 1;
 		return (1);
-	}
 	return (0);
 }
 
