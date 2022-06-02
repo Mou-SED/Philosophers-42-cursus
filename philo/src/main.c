@@ -6,27 +6,33 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:42:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 18:20:21 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/02 20:50:41 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	get_info(t_data *data, int ac, char **av)
+static int	get_info(t_data *data, int ac, char **av)
 {
 	data->time_to_die = ft_atoi(av[2]);
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
+	{
 		data->n_must_eat = ft_atoi(av[5]);
+		if (data->n_must_eat == 0)
+			return (-1);
+	}
+	return (0);
 }
 
-static void	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
+static int	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
 {
 	int	i;
 
 	i = 0;
-	get_info(data, ac, av);
+	if (get_info(data, ac, av) == -1)
+		return (-1);
 	data->init_time = get_time();
 	pthread_mutex_init(&(data->print_mutex), NULL);
 	while (i < philosophers->num_philos)
@@ -37,6 +43,7 @@ static void	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
 		philosophers[i].left_fork = (i + 1) % philosophers->num_philos;
 		i++;
 	}
+	return (0);
 }
 
 static void	destroy_all(t_philos *philosophers, t_data *data)
@@ -70,7 +77,13 @@ int	main(int ac, char **av)
 	data = alloc_data(philosophers);
 	if (data == NULL)
 		return (-1);
-	init_info(philosophers, data, ac, av);
+	if (init_info(philosophers, data, ac, av) == -1)
+	{
+		free(philosophers);
+		free(data->forks);
+		free(data);
+		return (0);
+	}
 	create_philos(philosophers, data);
 	dying(philosophers);
 	destroy_all(philosophers, data);
