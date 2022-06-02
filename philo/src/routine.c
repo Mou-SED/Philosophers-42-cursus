@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:22:32 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 16:48:09 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/02 17:36:48 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*routine(void *philosophers)
 
 	philosopher = (t_philos *)philosophers;
 	if (philosopher->id % 2 == 1)
-		usleep(50);
+		usleep(200);
 	while (1)
 	{
 		taking_fork(philosopher, philosopher->right_fork);
