@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 08:07:40 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 18:26:47 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:51:55 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	dying(t_philos *philosophers)
 			i = 0;
 		if (is_die(&philosophers[i]))
 		{
-			print_routine("died", philosophers[i].philo_data->philo_die,
+			print_routine(NULL, philosophers[i].philo_data->philo_die,
 				&philosophers[i]);
 			break ;
 		}

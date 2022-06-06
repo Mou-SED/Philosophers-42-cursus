@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:42:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/02 20:50:41 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:48:06 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	destroy_all(t_philos *philosophers, t_data *data)
 	{
 		pthread_mutex_destroy(&(data->forks[i]));
 		i++;
+		usleep(50);
 	}
 	pthread_mutex_destroy(&(data->print_mutex));
 	free(philosophers);
