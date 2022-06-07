@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:49:56 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/01 18:54:57 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:27:06 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,39 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <semaphore.h>
+
+typedef struct s_data
+{
+	time_t			init_time;
+	sem_t			forks;
+	sem_t			print_sem;
+	time_t			philo_die;
+	useconds_t		time_to_eat;
+	useconds_t		time_to_sleep;
+	useconds_t		time_to_die;
+	int				n_must_eat;
+	int				philos_eats;
+}	t_data;
+
+typedef struct s_philos
+{
+	int				id;
+	int				num_philos;
+	int				right_fork;
+	int				left_fork;
+	int				philo_eat;
+	useconds_t		last_eat;
+	t_data			*philo_data;
+}	t_philos;
+
+int			ft_atoi(const char *str);
+int			check_argments(int ac, char **av);
+t_philos	*alloc_philos(char **av);
+t_data		*alloc_data(t_philos *philosophers);
+time_t		get_time(void);
+time_t		set_time(time_t init_time);
+void		ft_usleep(time_t time);
+void		create_process(void);
+
 
 #endif
