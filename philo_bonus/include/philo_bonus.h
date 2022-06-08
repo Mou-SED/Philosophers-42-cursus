@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:49:56 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/07 13:27:06 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:23:24 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ t_data		*alloc_data(t_philos *philosophers);
 time_t		get_time(void);
 time_t		set_time(time_t init_time);
 void		ft_usleep(time_t time);
-void		create_process(void);
+void		create_process(t_philos *philosophers);
+void		*routine(void *philosophers);
+void		print_routine(char *message, time_t time, t_philos *philosophers);
 
 
 #endif

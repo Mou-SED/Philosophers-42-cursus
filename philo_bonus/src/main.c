@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:55:25 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/07 15:27:58 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:13:18 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	main(int ac, char **av)
 {
 	t_philos	*philosophers;
 	t_data		*data;
-	pid_t p_pid;
 
 	if (ac != 5 && ac != 6)
 		return (printf("Number of argument is invalid\n"), -1);
@@ -66,8 +65,7 @@ int	main(int ac, char **av)
 		free(data);
 		return (0);
 	}
-	p_pid = getpid();
-	printf("Philo_bonus is Loading...%d\n", p_pid);
-	create_process();
+	printf("Philo_bonus is Loading...%d\n", getpid());
+	create_process(philosophers);
 	return (0);
 }
