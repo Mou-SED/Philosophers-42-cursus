@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:55:25 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/08 16:13:18 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/09 10:46:48 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
 	data->init_time = get_time();
 	while (i < philosophers->num_philos)
 	{
+		philosophers[i].philo_data = data;
 		philosophers[i].id = i;
 		philosophers[i].right_fork = i;
 		philosophers[i].left_fork = (i + 1) % philosophers->num_philos;
@@ -65,7 +66,6 @@ int	main(int ac, char **av)
 		free(data);
 		return (0);
 	}
-	printf("Philo_bonus is Loading...%d\n", getpid());
 	create_process(philosophers);
 	return (0);
 }
