@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:15:21 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/09 11:06:43 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/10 20:52:32 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	taking_fork(t_philos *philosophers)
 {
 	time_t	now;
 
+	sem_wait(philosophers->philo_data->forks);
 	now = set_time(philosophers->philo_data->init_time);
 	print_routine("has taken a fork", now, philosophers);
 }
-
 
 void	eating(t_philos *philosophers)
 {
@@ -50,9 +50,14 @@ void	*routine(void *philosophers)
 	t_philos	*philosopher;
 
 	philosopher = (t_philos *)philosophers;
-	taking_fork(philosopher);
-	taking_fork(philosopher);
-	eating(philosopher);
-	sleeping(philosopher);
+	while (1)
+	{
+		taking_fork(philosopher);
+		taking_fork(philosopher);
+		eating(philosopher);
+		sem_post(philosopher->philo_data->forks);
+		sem_post(philosopher->philo_data->forks);
+		sleeping(philosopher);
+	}
 	return (NULL);
 }
