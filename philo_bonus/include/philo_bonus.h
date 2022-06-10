@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:49:56 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/10 20:57:02 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/10 21:10:24 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void		ft_usleep(time_t time);
 void		create_process(t_philos *philosophers);
 void		*routine(void *philosophers);
 void		print_routine(char *message, time_t time, t_philos *philosophers);
-void		dying(t_philos *philosophers, pid_t *list_pid);
+int			dying(t_philos *philosophers, pid_t *list_pid);
 
 #endif

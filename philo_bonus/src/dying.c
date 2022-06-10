@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:16:23 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/10 20:55:23 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/10 21:10:03 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_die(t_philos *philosophers)
 
 // TODO:free childs
 
-void	dying(t_philos *philosophers, pid_t *list_pid)
+int	dying(t_philos *philosophers, pid_t *list_pid)
 {
 	(void)list_pid;
 	while (1)
@@ -33,11 +33,11 @@ void	dying(t_philos *philosophers, pid_t *list_pid)
 		{
 			print_routine(NULL,
 				set_time(philosophers->philo_data->init_time), philosophers);
-			exit(2);
+			return (2);
 		}
 		if (philosophers->philo_data->philos_eats == 1)
 		{
-			exit(3);
+			return (3);
 		}
 	}
 }
