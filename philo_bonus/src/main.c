@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:55:25 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/09 10:46:48 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/10 20:53:53 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ static int	init_info(t_philos *philosophers, t_data *data, int ac, char **av)
 	if (get_info(data, ac, av) == -1)
 		return (-1);
 	data->init_time = get_time();
+	sem_unlink("/forks");
+	sem_unlink("/print_sem");
+	data->forks = sem_open("/forks", O_CREAT | O_EXCL, 0644,
+			philosophers->num_philos);
+	data->print_sem = sem_open("/print_sem", O_CREAT | O_EXCL, 0644, 1);
 	while (i < philosophers->num_philos)
 	{
 		philosophers[i].philo_data = data;
 		philosophers[i].id = i;
-		philosophers[i].right_fork = i;
-		philosophers[i].left_fork = (i + 1) % philosophers->num_philos;
 		i++;
 	}
 	return (0);
@@ -67,5 +70,7 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	create_process(philosophers);
+	free(philosophers);
+	free(data);
 	return (0);
 }
