@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 10:50:34 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/02 10:51:20 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 09:10:44 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_atoi(const char *str)
 		if (ptr[i] == '-')
 			s = s * -1;
 		if (ptr[i + 1] == '-' || ptr[i + 1] == '+')
-			return (0);
+			return (-1);
 		i++;
 	}
 	while ((ptr[i] >= '0') && (ptr[i] <= '9'))
