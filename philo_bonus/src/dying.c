@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:16:23 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/10 21:10:03 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 07:20:44 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int	is_die(t_philos *philosophers)
 		return (1);
 	return (0);
 }
-
-// TODO:free childs
 
 int	dying(t_philos *philosophers, pid_t *list_pid)
 {
