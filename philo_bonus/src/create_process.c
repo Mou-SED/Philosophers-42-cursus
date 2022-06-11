@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:14:06 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/10 21:20:42 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 08:43:46 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void	create_process(t_philos *philosophers)
 		{
 			printf("No child process is created!\n");
 			sem_unlink("/forks");
+			sem_unlink("/print_sem");
 			sem_close(philosophers->philo_data->forks);
+			sem_close(philosophers->philo_data->print_sem);
 			free(philosophers->philo_data);
 			free(philosophers);
 			free(list_pid);
