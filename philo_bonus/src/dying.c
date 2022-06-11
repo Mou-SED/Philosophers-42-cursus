@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:16:23 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/11 07:20:44 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:20:28 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ int	dying(t_philos *philosophers, pid_t *list_pid)
 			print_routine(NULL,
 				set_time(philosophers->philo_data->init_time), philosophers);
 			return (2);
-		}
-		if (philosophers->philo_data->philos_eats == 1)
-		{
-			return (3);
 		}
 	}
 }

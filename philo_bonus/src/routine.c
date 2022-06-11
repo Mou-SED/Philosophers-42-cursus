@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 16:15:21 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/10 20:52:32 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:22:11 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	eating(t_philos *philosophers)
 	philosophers->last_eat = now;
 	print_routine("is eating", now, philosophers);
 	ft_usleep(philosophers->philo_data->time_to_eat);
-	philosophers->philo_eat++;
-	if (philosophers->philo_eat == philosophers->philo_data->n_must_eat)
-		philosophers->philo_data->philos_eats++;
 }
 
 void	sleeping(t_philos *philosophers)
@@ -57,7 +54,11 @@ void	*routine(void *philosophers)
 		eating(philosopher);
 		sem_post(philosopher->philo_data->forks);
 		sem_post(philosopher->philo_data->forks);
+		philosopher->philo_eat++;
+		if (philosopher->philo_eat == philosopher->philo_data->n_must_eat)
+			break ;
 		sleeping(philosopher);
 	}
+	exit(3);
 	return (NULL);
 }

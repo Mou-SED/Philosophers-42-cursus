@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:14:06 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/11 08:43:46 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:22:56 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,22 @@ static int	run_proccess(t_philos *philosophers, pid_t *list_pid)
 static void	kill_process(t_philos *philosophers, pid_t *list_pid)
 {
 	int	i;
-	int	j;
 	int	status;
 
-	i = -1;
-	j = 0;
+	i = 0;
 	waitpid(-1, &status, 0);
-	while (++i < philosophers->num_philos)
+	while (i < philosophers->num_philos)
 	{
 		if (WEXITSTATUS(status) == 2)
-		{
-			while (j < philosophers->num_philos)
-			{
-				kill(list_pid[j], SIGINT);
-				j++;
-			}
-		}
+			kill(list_pid[i], SIGINT);
+		i++;
+	}
+	i = 0;
+	while (i < philosophers->num_philos)
+	{
 		if (WEXITSTATUS(status) == 3)
 			waitpid(-1, &status, 0);
+		i++;
 	}
 }
 
@@ -69,10 +67,10 @@ void	create_process(t_philos *philosophers)
 		if (list_pid[i] == -1)
 		{
 			printf("No child process is created!\n");
-			sem_unlink("/forks");
-			sem_unlink("/print_sem");
 			sem_close(philosophers->philo_data->forks);
 			sem_close(philosophers->philo_data->print_sem);
+			sem_unlink("/forks");
+			sem_unlink("/print_sem");
 			free(philosophers->philo_data);
 			free(philosophers);
 			free(list_pid);

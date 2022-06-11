@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:49:56 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/10 21:10:24 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/11 10:22:33 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_data
 	useconds_t		time_to_sleep;
 	useconds_t		time_to_die;
 	int				n_must_eat;
-	int				philos_eats;
 }	t_data;
 
 typedef struct s_philos
