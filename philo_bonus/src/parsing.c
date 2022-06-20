@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 14:19:14 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/11 09:11:56 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/20 23:01:11 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_argments(int ac, char **av)
 
 	i = 1;
 	while (i < ac)
-		if (ft_atoi(av[i++]) < 0)
+		if (ft_atoi(av[i++]) < 0  || ft_atoi(av[1]) == 0)
 			return (printf("This is not a valide value!\n"), -1);
 	i = 1;
 	while (i < ac)
