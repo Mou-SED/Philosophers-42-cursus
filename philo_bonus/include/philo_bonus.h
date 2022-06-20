@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:49:56 by moseddik          #+#    #+#             */
-/*   Updated: 2022/06/11 10:22:33 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/06/20 22:43:33 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <sys/wait.h>
+# include <fcntl.h>
+# include <sys/stat.h>
 # include <semaphore.h>
 
 typedef struct s_data
